@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AE Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <div class="logo-area">
+                <div class="gemini-icon"></div>
+                <h1>Gemini Assistant</h1>
+            </div>
+            <div class="status-indicator">
+                <span id="status-dot" class="idle"></span>
+                <span id="status-text">Ready</span>
+            </div>
+        </header>
+
+        <main id="chat-history">
+            <div class="message system">
+                <div class="message-content">
+                    Hello! I'm your AI After Effects assistant. Ask me to create compositions, layers, or apply effects!
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="input-container">
+                <textarea id="user-input" placeholder="Type a command (e.g., 'Create a 4K comp with text')..."
+                    rows="1"></textarea>
+                <button id="send-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+            <div class="settings">
+                <input type="text" id="api-key" placeholder="Enter Gemini Key OR Railway URL">
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="CSInterface.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
