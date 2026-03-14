@@ -28,7 +28,7 @@ app.post('/api/chat', async (req, res) => {
             return res.status(500).json({ error: 'API Key not configured on server' });
         }
 
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
         const result = await model.generateContent(SYSTEM_PROMPT + "\n\nUser: " + prompt);
         const response = await result.response;
         const text = response.text();
