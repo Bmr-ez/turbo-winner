@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
     res.send('Gemini AE Backend is running!');
 });
 
+app.get('/api/test', (req, res) => {
+    res.json({ status: 'ok', model: 'gemini-3-flash-preview' });
+});
+
 app.post('/api/chat', async (req, res) => {
     try {
         const { prompt } = req.body;
