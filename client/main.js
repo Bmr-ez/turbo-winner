@@ -48,7 +48,11 @@ async function handleSend() {
         }
     } catch (error) {
         console.error(error);
-        addMessage("Error: " + error.message, "error");
+        if (error.message === 'Failed to fetch') {
+            addMessage("Error: Could not connect to the server. Please check your internet connection or if the server URL is correct.", "error");
+        } else {
+            addMessage("Error: " + error.message, "error");
+        }
     } finally {
         setLoading(false);
     }
@@ -119,7 +123,11 @@ async function callRailway(prompt, url) {
 
     const response = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify({ prompt })
     });
 
