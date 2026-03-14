@@ -75,7 +75,7 @@ function setLoading(isLoading) {
 }
 
 async function callGemini(prompt, apiKey) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
     const context = `You are an After Effects expert assistant. The user will ask you to perform tasks in After Effects.
     Your task is to generate Adobe ExtendScript (JSX) code that accomplishes the user's request.
