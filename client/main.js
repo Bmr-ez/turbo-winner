@@ -3,12 +3,11 @@ const csInterface = new CSInterface();
 const chatHistory = document.getElementById('chat-history');
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
-const apiKeyInput = document.getElementById('api-key'); // Now also used for Server URL
 const statusDot = document.getElementById('status-dot');
 const statusText = document.getElementById('status-text');
 
-// Tip: If you host on Railway, paste your Railway URL here or in the input field
-let serverUrl = "";
+// Hardcoded Railway Server URL
+let serverUrl = "https://turbo-winner-production.up.railway.app";
 
 
 // Auto-expand textarea
@@ -18,6 +17,7 @@ userInput.addEventListener('input', function () {
 });
 
 sendBtn.addEventListener('click', handleSend);
+
 userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
@@ -27,13 +27,8 @@ userInput.addEventListener('keypress', (e) => {
 
 async function handleSend() {
     const prompt = userInput.value.trim();
-    const apiKey = apiKeyInput.value.trim();
 
     if (!prompt) return;
-    if (!apiKey) {
-        addMessage('Please enter your Gemini API Key in the settings below.', 'error');
-        return;
-    }
 
     addMessage(prompt, 'user');
     userInput.value = '';
@@ -42,14 +37,7 @@ async function handleSend() {
     setLoading(true);
 
     try {
-        let response;
-        // Check if the input is a URL (Railway) or an API Key
-        if (apiKey.startsWith('http')) {
-            response = await callRailway(prompt, apiKey);
-        } else {
-            response = await callGemini(prompt, apiKey);
-        }
-
+        let response = await callRailway(prompt, serverUrl);
         const script = extractScript(response);
 
         if (script) {
